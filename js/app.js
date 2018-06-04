@@ -25,13 +25,25 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-
+var Player = function(sprite, x, y) {
+    // loads the sprite image
+    this.sprite = 'images/char-cat-girl.png';
+    // sets location of Enemy sprite
+    this.x = x;
+    this.y = y;
+};
 
 // Now instantiate your objects.
+
+var player = new Player(sprite, x, y);
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-player = {};
+player = {
+    sprite: sprite,
+    x: 105,
+    y: 90
+};
 
 
 // This listens for key presses and sends the keys to your
