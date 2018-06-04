@@ -1,13 +1,13 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(sprite, x, y, speed) {
 
     // loads the sprite image
     this.sprite = 'images/enemy-bug.png';
     // sets initial location of Enemy sprite
-    this.x = col * 101;
-    this.y = row * 83;
+    this.x = x;
+    this.y = y;
     // sets speed of Enemy sprite
-    this.speed = 0;
+    this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
