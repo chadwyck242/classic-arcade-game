@@ -23,14 +23,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if (allEnemies.length <= 3) {
-        allEnemies.push({
-            sprite: sprite,
-            x: getRandomInt(3) * 101 - canvas.width,
-            y: canvas.height - getRandomIntInclusive(3, 5) * 171,
-            speed: x + getRandomIntInclusive(1, 5) * 10 * dt
-        });
-    }
+    dtRandom = dt * getRandomIntInclusive(1, 20);
+    this.x = this.x + this.speed * dtRandom;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -50,11 +44,36 @@ var Player = function(sprite, x, y, speed) {
     this.speed = speed;
 };
 
+// Update player position on the screen
+// Parameter: dt, a time delta between ticks
+Player.prototype.update = function(dt) {
+
+};
+
+// draw the player on the screen
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Handle player controls
+Player.prototype.handleInput = function() {
+
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
+var enemy1 = new Enemy(this.sprite, -203, 60, 10);
+var enemy2 = new Enemy(this.sprite, -101, 145, 10);
+var enemy3 = new Enemy(this.sprite, -301, 230, 10);
+// var enemy4 = new Enemy(this.sprite, -505, 130, 5);
+// var enemy5 = new Enemy(this.sprite, -405, 60, 20);
+
+allEnemies.push(enemy1, enemy2, enemy3);
+
 // Place the player object in a variable called player
-var player = new Player(this.sprite, 100, 100, 10);
+var player = new Player(this.sprite, 200, 400, 10);
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
