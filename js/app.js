@@ -23,8 +23,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    dtRandom = dt * getRandomIntInclusive(1, 20);
-    this.x = this.x + this.speed * dtRandom;
+    this.x = this.x + this.speed * dt;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -46,7 +45,7 @@ var Player = function(sprite, x, y, speed) {
 
 // Update player position on the screen
 // Parameter: dt, a time delta between ticks
-Player.prototype.update = function(dt) {
+Player.prototype.update = function() {
 
 };
 
@@ -56,20 +55,27 @@ Player.prototype.render = function() {
 };
 
 // Handle player controls
-Player.prototype.handleInput = function() {
-
+Player.prototype.handleInput = function(dt) {
+    if(this.allowedKeys[keyCode] === 'left'){
+        this.x -= 20 * dt;
+    }
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-var enemy1 = new Enemy(this.sprite, -203, 60, 10);
-var enemy2 = new Enemy(this.sprite, -101, 145, 10);
-var enemy3 = new Enemy(this.sprite, -301, 230, 10);
-// var enemy4 = new Enemy(this.sprite, -505, 130, 5);
-// var enemy5 = new Enemy(this.sprite, -405, 60, 20);
+(function addEnemies() {
+    var enemy = [];
+    for(var i = 1; i <= 50; i++) {
+        var enemySprite = Enemy.sprite;
+        var xVal = getRandomIntInclusive(1, 50) * (-101);
+        var yVal = getRandomIntInclusive(1, 3) * (72);
+        var xVel = getRandomIntInclusive(2, 10) * 20;
 
-allEnemies.push(enemy1, enemy2, enemy3);
+        enemy[i] = new Enemy(enemySprite, xVal, yVal, xVel);
+        allEnemies.push(enemy[i]);
+    }
+})();
 
 // Place the player object in a variable called player
 var player = new Player(this.sprite, 200, 400, 10);
