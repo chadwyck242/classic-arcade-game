@@ -1,9 +1,10 @@
+'use strict';
 // MDN JavaScript Reference
 // Math.random() inclusive min and max example function:
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // variables for my keypress events
@@ -26,20 +27,15 @@ var Enemy = function(sprite, x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
     this.x = this.x + this.speed * dt;
 };
 
-// Draw the enemy on the screen, required method for game
+// Draw the enemy on the screen
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Player class constructor
 var Player = function(sprite, x, y) {
     // loads the sprite image
     this.sprite = 'images/char-cat-girl.png';
@@ -49,6 +45,7 @@ var Player = function(sprite, x, y) {
 };
 
 // Update player position on the screen
+// Set player bounds within the canvas
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function() {
     if(rightPressed) {
@@ -118,7 +115,7 @@ var allEnemies = [];
         var enemySprite = Enemy.sprite;
         var xVal = getRandomIntInclusive(1, 50) * (-101);
         var yVal = getRandomIntInclusive(1, 3) * (72);
-        var xVel = getRandomIntInclusive(2, 10) * 20;
+        var xVel = getRandomIntInclusive(2, 10) * 30;
 
         enemy[i] = new Enemy(enemySprite, xVal, yVal, xVel);
         allEnemies.push(enemy[i]);

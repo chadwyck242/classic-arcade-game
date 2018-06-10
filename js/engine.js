@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -94,6 +94,21 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    // checks for enemy versus player conditions
+    // uses the rectangualr Axis-Aligned Bounding Box method
+    // found on MDN Game Development Tutorials
+    function checkCollisions() {
+        allEnemies.forEach(function(enemy){
+            if((player.x < enemy.x + 50) &&
+                ((player.x + 50) > enemy.x) &&
+                (player.y < (enemy.y + 67)) &&
+                ((player.y + 67) > enemy.y)) {
+                    player.x = 200;
+                    player.y = 400;
+            }
+        });
     }
 
     /* This function initially draws the "game level", it will then call
@@ -161,7 +176,8 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        player.x = 200;
+        player.y = 400;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
