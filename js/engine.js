@@ -21,12 +21,13 @@ var Engine = (function(global) {
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
+        gameScreen = doc.querySelector(".game-screen"),
         ctx = canvas.getContext('2d'),
         lastTime;
 
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    gameScreen.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -101,10 +102,10 @@ var Engine = (function(global) {
     // found on MDN Game Development Tutorials
     function checkCollisions() {
         allEnemies.forEach(function(enemy){
-            if((player.x < enemy.x + 50) &&
-                ((player.x + 50) > enemy.x) &&
-                (player.y < (enemy.y + 67)) &&
-                ((player.y + 67) > enemy.y)) {
+            if((player.x < enemy.x + 60) &&
+                ((player.x + 60) > enemy.x) &&
+                (player.y < (enemy.y + 40)) &&
+                ((player.y + 40) > enemy.y)) {
                     player.x = 200;
                     player.y = 400;
             }

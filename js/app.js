@@ -1,4 +1,3 @@
-'use strict';
 // MDN JavaScript Reference
 // Math.random() inclusive min and max example function:
 function getRandomIntInclusive(min, max) {
@@ -6,6 +5,10 @@ function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+var winBox = document.querySelector(".win-text");
+
+var winHTML = `<h3>You Made It!</h3>`;
 
 // variables for my keypress events
 var rightPressed = false;
@@ -76,13 +79,16 @@ Player.prototype.update = function() {
         this.x = 401;
     }
 
-    if(this.y < 0) {
-        this.y = -10;
+    if(this.y < -50) {
+        this.y = -50;
     }
 
     else if(this.y > 400) {
         this.y = 400;
     }
+
+    player.playerWin();
+
 };
 
 // draw the player on the screen
@@ -91,6 +97,7 @@ Player.prototype.render = function() {
 };
 
 // Handle player controls
+// sets a boolean to check if a particular arrow keys was pressed
 Player.prototype.handleInput = function(keys) {
     if(keys == 'right') {
         rightPressed = true;
@@ -106,16 +113,28 @@ Player.prototype.handleInput = function(keys) {
     }
 };
 
+// method that takes action when player wins
+Player.prototype.playerWin = function() {
+    if(this.y <= -25) {
+        allEnemies = [];
+        this.x = 200;
+        this.y = 400;
+        winBox.innerHTML = winHTML;
+    } else {
+        return;
+    }
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 (function addEnemies() {
     var enemy = [];
-    for(var i = 1; i <= 50; i++) {
+    for(var i = 1; i <= 75; i++) {
         var enemySprite = Enemy.sprite;
-        var xVal = getRandomIntInclusive(1, 50) * (-101);
+        var xVal = getRandomIntInclusive(1, 50) * (-101) + 201;
         var yVal = getRandomIntInclusive(1, 3) * (72);
-        var xVel = getRandomIntInclusive(2, 10) * 30;
+        var xVel = getRandomIntInclusive(2, 10) * 20;
 
         enemy[i] = new Enemy(enemySprite, xVal, yVal, xVel);
         allEnemies.push(enemy[i]);
