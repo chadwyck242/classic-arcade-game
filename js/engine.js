@@ -106,8 +106,7 @@ var Engine = (function(global) {
                 ((player.x + 60) > enemy.x) &&
                 (player.y < (enemy.y + 40)) &&
                 ((player.y + 40) > enemy.y)) {
-                    player.x = 200;
-                    player.y = 400;
+                    window.location.reload(true);
             }
         });
     }
