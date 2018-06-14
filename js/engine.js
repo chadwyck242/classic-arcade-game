@@ -102,11 +102,12 @@ var Engine = (function(global) {
     // found on MDN Game Development Tutorials
     function checkCollisions() {
         allEnemies.forEach(function(enemy){
-            if((player.x < enemy.x + 60) &&
-                ((player.x + 60) > enemy.x) &&
-                (player.y < (enemy.y + 40)) &&
-                ((player.y + 40) > enemy.y)) {
-                    window.location.reload();
+            if((player.x < enemy.x + 80) &&
+                ((player.x + 80) > enemy.x) &&
+                (player.y < (enemy.y + 20)) &&
+                ((player.y + 20) > enemy.y)) {
+                    player.x = 200;
+                    player.y = 400;
             }
         });
     }
