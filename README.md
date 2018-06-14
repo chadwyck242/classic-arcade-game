@@ -1,5 +1,5 @@
-frontend-nanodegree-arcade-game
-===============================
+Udacity FEND Classic Arcade Game Clone
+======================================
 
 # Insectans Run
 
