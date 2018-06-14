@@ -6,9 +6,13 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// adds winning text when game is won
 var winBox = document.querySelector(".win-text");
 
-var winHTML = `<h3>You Made It!</h3>`;
+// HTML text template to add when winning the game
+var winHTML = `<h3>You Made It!</h3>
+                <p>Play Again?</p>
+            <button id="reload" name="replay" type="button">Start</button>`;
 
 // variables for my keypress events
 var rightPressed = false;
@@ -120,10 +124,21 @@ Player.prototype.playerWin = function() {
         this.x = 200;
         this.y = 400;
         winBox.innerHTML = winHTML;
+
+        // variable for the reset button
+        var resetButton = document.querySelector("#reload");
+
+        // Event listener for the reset button
+        resetButton.addEventListener('click', reset, true);
     } else {
         return;
     }
 };
+
+// function to reset the game
+function reset() {
+    window.location.reload(true);
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies

@@ -10,6 +10,43 @@ h1 {
 }
 
 h3 {
-    color: #FFF;
+    color: #FF0;
     font-size: 2.0em;
+}
+
+p {
+    color: #0F0;
+    font-size: 1.2em;
+}
+
+footer {
+    color: #00F;
+    font-size: 0.8em;
+}
+
+footer .controls {
+    color: #FFF;
+}
+
+.win-text {
+    width: 505px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#reload {
+    display: inline-block;
+    border: 0;
+    border-radius: 5px;
+    background: #000;
+    color: #F00;
+    margin: 5px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1.2;
+    cursor: pointer;
 }
